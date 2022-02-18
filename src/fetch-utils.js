@@ -23,7 +23,7 @@ export async function logout() {
   return window.location.href = './';
 }
 
-export async function createPizza(movie){
+export async function addToWatchList(movie){
   const response = await client
     .from('movies')
     .insert([movie]);
@@ -39,12 +39,22 @@ export async function getMovies() {
   return checkError(response);    
 }
 
-export async function getMoviesById(id) {
+export async function getWatchList(id) {
   const response = await client
     .from('movies')
     .select()
-    .match({ id })
-    .single();
+    .order('id');
+  
+  
 
   return checkError(response);    
+}
+export async function watchMovie(id){
+  const response = await client
+    .from('movies')
+    .update({ watched: true })
+    .match({ id });
+
+  return checkError(response);
+
 }

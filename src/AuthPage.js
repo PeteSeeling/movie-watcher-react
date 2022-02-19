@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import { signIn, signUp } from './fetch-utils.js';
 
-export default function AuthPage(props) {
+export default function AuthPage() {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState('');
 
   async function handleSignIn(e) {
+  
     e.preventDefault();
 
     const user = await signIn(email, password);
-    props.setUser(user);
+    setUser(user);
 
   }
   async function handleSignUp(e){
     e.preventDefault();
     const user = await signUp(email, password);
-    props.setUser(user);
+    setUser(user);
   }
   return (
     <div className='auth'>

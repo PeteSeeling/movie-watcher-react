@@ -1,24 +1,58 @@
-import logo from './logo.svg';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+  
+} from 'react-router-dom';
 import './App.css';
+import { useState } from 'react';
+import { logout } from './fetch-utils';
+import { NavLink } from 'react-router-dom';
+import AuthPage from './AuthPage';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem('supabase.auth.token'));
+
+  async function handleLogout(){
+    logout();
+    currentUser('');
+    setCurrentUser('');
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header>
+          {
+            currentUser &&
+            <div>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          }
+        </header>
+        <main>
+          <Switch>
+            <Route exact path="/">
+              {currentUser
+                ? <Redirect to="/watchlist" />
+                : <AuthPage />}
+              {
+                currentUser &&
+                <div>
+                  <NavLink to="/search">Search Page</NavLink>
+                  <NavLink to="/watchlist">Watchlist Page</NavLink>
+                </div>
+              }
+            </Route>
+          </Switch>
+        </main>
+    
+      </div>
+    </Router>
   );
 }
 

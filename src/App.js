@@ -17,7 +17,7 @@ function App() {
 
   async function handleLogout(){
     logout();
-    currentUser('');
+   
     setCurrentUser('');
   }
 
@@ -39,7 +39,7 @@ function App() {
             <Route exact path="/">
               {currentUser
                 ? <Redirect to="/watchlist" />
-                : <AuthPage />}
+                : <AuthPage setUser={setCurrentUser}/>}
               {
                 currentUser &&
                 <div>

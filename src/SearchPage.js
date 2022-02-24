@@ -12,6 +12,7 @@ export default function SearchPage() {
     e.preventDefault();
 
     const movies = await searchMovies(searchQuery);
+    // console.log(movies);
     setSearchResults(movies);
   }
 

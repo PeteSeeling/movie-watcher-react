@@ -3,7 +3,7 @@ import Movie from './Movie';
 import WatchListItem from './WatchListItem';
 
 export default function MoviesList({ movies, reloadWatchList, onWatchList }) {
-  console.log(movies);
+
 
   const location = useLocation();
 

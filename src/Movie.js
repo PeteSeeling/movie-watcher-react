@@ -2,7 +2,7 @@ import { addToWatchList } from './fetch-utils';
 
 export default function Movie({ movie, onWatchList, reloadWatchList }) {
   const watchedMovie = onWatchList(movie.id);
-  console.log(watchedMovie);
+  
   async function handleClick(){
     if (!watchedMovie) {
       const watchListMovie = {

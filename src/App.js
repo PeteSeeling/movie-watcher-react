@@ -11,13 +11,10 @@ import { useState } from 'react';
 import { logout } from './fetch-utils';
 import { NavLink } from 'react-router-dom';
 import AuthPage from './AuthPage';
-import MoviesList from './MovieList';
-import Movie from './Movie';
 import SearchPage from './SearchPage';
 import WatchListPage from './WatchListPage';
 
 function App() {
-  console.log();
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('supabase.auth.token'));
 
   async function handleLogout(){

@@ -3,7 +3,6 @@ import MoviesList from './MovieList';
 import { getMyWatchlist } from './fetch-utils';
 
 export default function WatchListPage() {
- 
   const [movies, setMovies] = useState([]);
 
   async function refreshMyWatchList(){

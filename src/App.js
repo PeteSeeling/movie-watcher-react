@@ -14,6 +14,7 @@ import AuthPage from './AuthPage';
 import MoviesList from './MovieList';
 import Movie from './Movie';
 import SearchPage from './SearchPage';
+import WatchListPage from './WatchListPage';
 
 function App() {
   console.log();
@@ -31,7 +32,7 @@ function App() {
           {
             currentUser &&
             <div>
-              <NavLink to="/search">Search Page</NavLink>
+              <NavLink to="/movieslist">Search Page</NavLink>
               <NavLink to="/watchlist">Watchlist Page</NavLink>
               <button onClick={handleLogout}>Logout</button>
             </div>
@@ -45,9 +46,9 @@ function App() {
                 : <AuthPage setUser={setCurrentUser}/>}
            
             </Route>
-            <Route exact path="/movies/:id">
+            <Route exact path="/watchlist">
               {currentUser
-                ? <MoviesList />
+                ? <WatchListPage />
                 : <AuthPage setUser={setCurrentUser}/>}
            
             </Route>

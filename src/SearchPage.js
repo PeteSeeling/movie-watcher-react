@@ -25,8 +25,8 @@ export default function SearchPage() {
     refreshMyWatchList();
   }, []);
 
-  function isOnMyWatchList(api_id) {
-    const movieMatch = myWatchlist.find(item => Number(item.api_id) === Number(api_id));
+  function isOnMyWatchList(id) {
+    const movieMatch = myWatchlist.find(item => Number(item.id) === Number(id));
 
     return Boolean(movieMatch);
   }
@@ -39,9 +39,9 @@ export default function SearchPage() {
           onChange={e => setSearchQuery(e.target.value)} />
         <button>Search Movies</button>
       </form>
-      <div>
+      <div className='results'>
           Search Results:
-        <MoviesList movies={searchResults} isOnMyWatchList={isOnMyWatchList} refreshMyWatchList={refreshMyWatchList} />
+        <MoviesList movies={searchResults} onWatchList={isOnMyWatchList} reloadWatchList={refreshMyWatchList} />
         
       </div>
     </div>

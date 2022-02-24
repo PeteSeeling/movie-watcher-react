@@ -25,8 +25,8 @@ export async function logout() {
 
 export async function addToWatchList(movie){
   const response = await client
-    .from('movies')
-    .insert([movie]);
+    .from('watchlist-items')
+    .insert(movie);
 
   return checkError(response);
 }

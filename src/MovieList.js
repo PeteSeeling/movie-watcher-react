@@ -1,15 +1,16 @@
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useLocation } from 'react-router-dom';
 import Movie from './Movie';
 import WatchListItem from './WatchListItem';
 
 export default function MoviesList({ movies, reloadWatchList, onWatchList }) {
+  console.log(movies);
 
   const location = useLocation();
 
   return (
     <div className='movies-list'>
       {
-        movies.map((movie, i) => location.pathname.includes('search')
+        movies.map((movie, i) => location.pathname.includes('movieslist')
           ? <Movie
             key={movie.title + i}
             movie={movie}

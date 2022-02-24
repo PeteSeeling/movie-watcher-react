@@ -1,8 +1,8 @@
 import { addToWatchList } from './fetch-utils';
 
-export default function Movie({ movie, onWatchList, refreshOnWatchList }) {
+export default function Movie({ movie, onWatchList, reloadWatchList }) {
   const watchedMovie = onWatchList(movie.id);
-
+  
   async function handleClick(){
     if (!watchedMovie) {
       const watchListMovie = {
@@ -12,7 +12,7 @@ export default function Movie({ movie, onWatchList, refreshOnWatchList }) {
         api_id: movie.id,
       };
       await addToWatchList(watchListMovie);
-      await refreshOnWatchList();
+      await reloadWatchList();
     }
   }
   return (
@@ -24,7 +24,7 @@ export default function Movie({ movie, onWatchList, refreshOnWatchList }) {
       <h2>{movie.title}</h2>
       <h3>{movie.description}</h3>
       <div>
-        <img src={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : 'https://www.placebear.com/150/150'} />
+        <img className='image' src={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : 'https://www.placebear.com/150/150'} />
       </div>
     </div>
   );

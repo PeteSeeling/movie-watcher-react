@@ -5,10 +5,9 @@ export default function AuthPage(props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [user, setUser] = useState('');
+ 
 
   async function handleSignIn(e) {
-  
     e.preventDefault();
 
     const user = await signIn(email, password);
@@ -17,6 +16,7 @@ export default function AuthPage(props) {
   }
   async function handleSignUp(e){
     e.preventDefault();
+    
     const user = await signUp(email, password);
     props.setUser(user);
   }

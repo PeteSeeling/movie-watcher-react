@@ -3,6 +3,7 @@ import Movie from './Movie';
 import WatchListItem from './WatchListItem';
 
 export default function MoviesList({ movies, reloadWatchList, onWatchList }) {
+
   const location = useLocation();
 
   return (
@@ -16,6 +17,7 @@ export default function MoviesList({ movies, reloadWatchList, onWatchList }) {
             reloadWatchList={reloadWatchList} />
           : <WatchListItem
             key={movie.title + i}
+            
             reloadWatchList={reloadWatchList}
             movie={movie} />)
       }

@@ -11,17 +11,18 @@ import { useState } from 'react';
 import { logout } from './fetch-utils';
 import { NavLink } from 'react-router-dom';
 import AuthPage from './AuthPage';
+import MoviesList from './MovieList';
+import Movie from './Movie';
+import SearchPage from './SearchPage';
 
 function App() {
+  console.log();
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('supabase.auth.token'));
 
   async function handleLogout(){
     logout();
-   
     setCurrentUser('');
   }
-
-
 
   return (
     <Router>
@@ -30,6 +31,8 @@ function App() {
           {
             currentUser &&
             <div>
+              <NavLink to="/search">Search Page</NavLink>
+              <NavLink to="/watchlist">Watchlist Page</NavLink>
               <button onClick={handleLogout}>Logout</button>
             </div>
           }
@@ -38,16 +41,23 @@ function App() {
           <Switch>
             <Route exact path="/">
               {currentUser
-                ? <Redirect to="/watchlist" />
+                ? <Redirect to="/movieslist" />
                 : <AuthPage setUser={setCurrentUser}/>}
-              {
-                currentUser &&
-                <div>
-                  <NavLink to="/search">Search Page</NavLink>
-                  <NavLink to="/watchlist">Watchlist Page</NavLink>
-                </div>
-              }
+           
             </Route>
+            <Route exact path="/movies/:id">
+              {currentUser
+                ? <MoviesList />
+                : <AuthPage setUser={setCurrentUser}/>}
+           
+            </Route>
+            <Route exact path="/movieslist">
+              {currentUser
+                ? <SearchPage />
+                : <AuthPage setUser={setCurrentUser}/>}
+           
+            </Route>
+
           </Switch>
         </main>
     

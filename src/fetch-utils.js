@@ -39,16 +39,6 @@ export async function getMovies() {
   return checkError(response);    
 }
 
-export async function getWatchList(id) {
-  const response = await client
-    .from('movies')
-    .select()
-    .order('id');
-  
-  
-
-  return checkError(response);    
-}
 export async function watchMovie(id){
   const response = await client
     .from('movies')
@@ -58,3 +48,24 @@ export async function watchMovie(id){
   return checkError(response);
 
 }
+export async function getMyWatchlist(id){
+  const response = await client
+    .from('watchlist-items')
+    .select()
+    .order(id);
+
+  return checkError(response);
+}
+
+export async function searchMovies(query){
+  const response = await fetch(`/.netlify/functions/movies-endpoint?searchQuery=${query}`);
+
+  const json = await response.json();
+
+  return json.data.results;
+}
+
+
+
+
+
